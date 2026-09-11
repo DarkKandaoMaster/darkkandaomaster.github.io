@@ -7,14 +7,18 @@
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "build": "node scripts/build.mjs",
-    "check": "node --check scripts/serve.mjs && node --check scripts/build.mjs && node --check assets/site.js",
-    "test": "playwright test"
+    "check": "node --check scripts/serve.mjs && node --check scripts/build.mjs && node --check scripts/export-assets.mjs && node --check assets/site.js && node --check assets/theme.js",
+    "test": "playwright test",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "export:assets": "node scripts/export-assets.mjs"
   },
   "engines": {
     "node": ">=22"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
-    "@playwright/test": "^1.63.0"
+    "@playwright/test": "^1.63.0",
+    "prettier": "^3.9.6"
   }
 }

@@ -4,13 +4,19 @@ const themeButton = document.querySelector('.theme-toggle');
 function syncThemeButton() {
   const isDark = root.dataset.theme === 'dark';
   themeButton?.setAttribute('aria-label', isDark ? '切换到浅色主题' : '切换到深色主题');
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark ? '#18231e' : '#f7f8f2');
+  document
+    .querySelector('meta[name="theme-color"]')
+    ?.setAttribute('content', isDark ? '#18231e' : '#f7f8f2');
 }
 
 syncThemeButton();
 themeButton?.addEventListener('click', () => {
   root.dataset.theme = root.dataset.theme === 'dark' ? 'light' : 'dark';
-  try { localStorage.setItem('kandao-theme', root.dataset.theme); } catch { /* Theme switching also works without storage. */ }
+  try {
+    localStorage.setItem('kandao-theme', root.dataset.theme);
+  } catch {
+    /* Theme switching also works without storage. */
+  }
   syncThemeButton();
 });
 
@@ -20,7 +26,9 @@ for (const button of filters) {
   button.addEventListener('click', () => {
     let visibleCount = 0;
     for (const project of projects) {
-      const matches = button.dataset.filter === 'all' || project.dataset.category.split(' ').includes(button.dataset.filter);
+      const matches =
+        button.dataset.filter === 'all' ||
+        project.dataset.category.split(' ').includes(button.dataset.filter);
       project.hidden = !matches;
       if (matches) visibleCount++;
     }
@@ -45,7 +53,7 @@ copyButton?.addEventListener('click', async () => {
 });
 
 const navLinks = [...document.querySelectorAll('.main-nav a')];
-const navSections = navLinks.map(link => document.querySelector(link.getAttribute('href')));
+const navSections = navLinks.map((link) => document.querySelector(link.getAttribute('href')));
 let scrollScheduled = false;
 function updateNavigation() {
   const threshold = document.querySelector('.site-header')?.getBoundingClientRect().bottom + 100;
@@ -54,7 +62,8 @@ function updateNavigation() {
     if (section.getBoundingClientRect().top <= threshold) activeIndex = index;
   });
   // The contact section has its own header link, so clear the numbered navigation there.
-  if (document.querySelector('#contact')?.getBoundingClientRect().top <= threshold) activeIndex = -1;
+  if (document.querySelector('#contact')?.getBoundingClientRect().top <= threshold)
+    activeIndex = -1;
   navLinks.forEach((link, index) => {
     if (index === activeIndex) link.setAttribute('aria-current', 'location');
     else link.removeAttribute('aria-current');
@@ -74,5 +83,6 @@ if (navLinks.length) {
 }
 
 document.querySelector('#print-resume')?.addEventListener('click', () => window.print());
-for (const year of document.querySelectorAll('[data-year]')) year.textContent = new Date().getFullYear();
+for (const year of document.querySelectorAll('[data-year]'))
+  year.textContent = new Date().getFullYear();
 root.classList.add('js');
