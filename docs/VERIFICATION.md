@@ -23,7 +23,7 @@
 
 工作流对 main 推送和 Pull Request 执行语法、格式、依赖安全、构建及 Chromium 浏览器测试。PR 不发布；main 的检查成功后部署至 github-pages 环境。Actions 固定为已核验官方版本的提交 SHA。
 
-本机额外安装新版 Chromium 时遇到下载 CDN 的 TLS 连接重置，因此本地浏览器验证使用现有 Edge；新版 Chromium 的验证由 GitHub Actions 执行，结果在部署完成后记录。
+本机额外安装新版 Chromium 时遇到下载 CDN 的 TLS 连接重置，因此本地浏览器验证使用现有 Edge。GitHub Actions 已成功使用 Chrome Headless Shell 153.0.8010.12 执行全部 18 项测试，见 [PR 验证运行](https://github.com/DarkKandaoMaster/darkkandaomaster.github.io/actions/runs/34626483574)。
 
 ## 回退
 
@@ -31,4 +31,13 @@
 
 ## 线上验证
 
-上线后记录工作流、正式域名状态、关键交互与非站点文件 404 结果。
+首次发布版本：`4c653a6dc18c8d1b277af9cedb454afb167d3252`，由 [PR #1](https://github.com/DarkKandaoMaster/darkkandaomaster.github.io/pull/1) 合入。独立审阅的最终结论为 Approve。
+
+- [main 验证与部署运行](https://github.com/DarkKandaoMaster/darkkandaomaster.github.io/actions/runs/34626644855)：构建验证与部署两个 job 均成功。
+- 正式地址 [https://darkkandaomaster.com/](https://darkkandaomaster.com/)：HTTP 200，浏览器显示新网站的正确标题与内容，已查看正式地址截图。
+- GitHub Pages：`build_type: workflow`、`status: built`、HTTPS 强制开启，自定义域名保持不变。
+- 对正式域名运行 Playwright：17 项适用测试通过。仅本地预览服务器的边界测试按环境排除，线上边界另外通过 HTTP 实测确认。
+- `/resume.html`、PDF、头像、字体、分享图均返回 200；资源分别使用正确的 `application/pdf`、`image/jpeg`、`font/ttf`、`image/png` MIME。
+- `/package.json`、`/AGENTS.md`、`/scripts/serve.mjs`、`/tests/site.spec.js`、`/docs/SPEC.md` 均返回 404。
+- 正式域名下主题持久化、作品筛选、邮箱复制及失败反馈、键盘导航、移动端布局、无 JavaScript 阅读和 PDF 实际下载通过测试。
+- 无网站 JavaScript 错误或资源加载错误。后续仅更新验收文档，不改变发布的站点文件。
