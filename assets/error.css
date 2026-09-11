@@ -1,0 +1,45 @@
+.error-page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 24px;
+}
+.error-page .brand {
+  font-size: 14px;
+}
+.error-number {
+  font:
+    180px/1.3 Georgia,
+    serif;
+  color: var(--accent);
+  letter-spacing: -12px;
+  margin-top: 20px;
+}
+.error-number span {
+  color: var(--orange);
+}
+.error-page h1 {
+  font-size: 32px;
+}
+.error-page p {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 20px 0 28px;
+}
+.error-note {
+  font: 9px var(--mono);
+  letter-spacing: 1px;
+  color: var(--muted);
+  margin-top: 40px;
+}
+@media (max-width: 400px) {
+  .error-number {
+    font-size: 140px;
+  }
+  .error-page h1 {
+    font-size: 28px;
+  }
+}
