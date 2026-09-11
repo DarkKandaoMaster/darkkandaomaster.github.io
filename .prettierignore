@@ -1,0 +1,10 @@
+node_modules/
+dist/
+test-results/
+playwright-report/
+AGENTS.md
+assets/*.svg
+assets/*.md
+assets/*.txt
+package-lock.json
+output/
