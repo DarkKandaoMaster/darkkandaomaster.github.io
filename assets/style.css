@@ -1109,6 +1109,29 @@ details[open] summary span {
   flex-wrap: wrap;
   gap: 12px;
 }
+.contact-group {
+  max-width: 420px;
+  border-top: 1px solid #56704f;
+  padding-top: 20px;
+  margin-top: 8px;
+}
+.contact-group-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.contact-group-label {
+  display: block;
+  font-size: 12px;
+  color: #c3cebe;
+}
+.contact-group-number {
+  display: block;
+  font: 20px/1.6 var(--mono);
+  letter-spacing: 1px;
+}
 .button-light {
   background: #eff2e2;
   color: #274637;
