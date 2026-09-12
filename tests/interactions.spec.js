@@ -44,6 +44,28 @@ test('copy email writes the correct address and confirms success', async ({ page
   expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('2837619550@qq.com');
 });
 
+test('QQ group number is visible and can be copied', async ({ page, context }) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+  await page.goto('/');
+  await expect(page.getByText('1026364290', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '复制群号' }).click();
+  await expect(page.locator('#qq-copy-feedback')).toContainText('群号已复制');
+  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('1026364290');
+});
+
+test('QQ group copying failure keeps the number available for manual copying', async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, 'clipboard', {
+      value: { writeText: () => Promise.reject(new Error('Denied')) },
+    });
+  });
+  await page.goto('/');
+  await expect(page.getByText('1026364290', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: '复制群号' }).click();
+  await expect(page.locator('#qq-copy-feedback')).toContainText('请手动复制：1026364290');
+  await expect(page.locator('#qq-copy-feedback')).not.toContainText('已复制');
+});
+
 test('clipboard denial provides a manual fallback without a false success message', async ({
   page,
 }) => {

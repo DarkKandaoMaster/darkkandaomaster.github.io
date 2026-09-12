@@ -37,20 +37,32 @@ for (const button of filters) {
   });
 }
 
-const copyButton = document.querySelector('#copy-email');
-copyButton?.addEventListener('click', async () => {
-  const feedback = document.querySelector('#copy-feedback');
-  feedback.textContent = '';
-  copyButton.disabled = true;
-  try {
-    await navigator.clipboard.writeText('2837619550@qq.com');
-    feedback.textContent = '邮箱已复制，期待你的来信。';
-  } catch {
-    feedback.textContent = '暂时无法自动复制，请手动复制：2837619550@qq.com';
-  } finally {
-    copyButton.disabled = false;
-  }
-});
+function bindCopyButton(buttonId, value, feedbackId, successMessage) {
+  const button = document.getElementById(buttonId);
+  const feedback = document.getElementById(feedbackId);
+  if (!button || !feedback) return;
+
+  button.addEventListener('click', async () => {
+    feedback.textContent = '';
+    button.disabled = true;
+    try {
+      await navigator.clipboard.writeText(value);
+      feedback.textContent = successMessage;
+    } catch {
+      feedback.textContent = `暂时无法自动复制，请手动复制：${value}`;
+    } finally {
+      button.disabled = false;
+    }
+  });
+}
+
+bindCopyButton('copy-email', '2837619550@qq.com', 'copy-feedback', '邮箱已复制，期待你的来信。');
+bindCopyButton(
+  'copy-qq-group',
+  '1026364290',
+  'qq-copy-feedback',
+  '群号已复制，欢迎加入 QQ 交流群。',
+);
 
 const navLinks = [...document.querySelectorAll('.main-nav a')];
 const navSections = navLinks.map((link) => document.querySelector(link.getAttribute('href')));
