@@ -75,3 +75,21 @@ test('preview server does not expose repository metadata or private local files'
     expect((await request.get(path)).status(), path).toBe(404);
   }
 });
+
+test('home page and its metadata use the nickname instead of the real name', async ({
+  page,
+  request,
+}) => {
+  const response = await request.get('/');
+  expect(response.ok()).toBeTruthy();
+  const html = await response.text();
+  expect(html).not.toContain('砍刀');
+  expect(html).toContain('DarkKandaoMaster');
+  await page.goto('/');
+  await expect(page).toHaveTitle(/砍刀/);
+  const person = JSON.parse(
+    await page.locator('script[type="application/ld+json"]').first().textContent(),
+  );
+  expect(person.name).toBe('砍刀');
+  expect([person.name, ...person.alternateName]).not.toContain('砍刀');
+});
