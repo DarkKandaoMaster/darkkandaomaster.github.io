@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>砍刀的房间</title>
+    <meta
+      name="description"
+      content="一个用 Three.js 搭的小房间：显示器上开着 QuickSay，桌上有日记本、亚克力立牌，还有一台从不关机的电脑。"
+    />
+    <meta name="theme-color" content="#1C1A1F" />
+    <link rel="canonical" href="https://darkkandaomaster.com/room.html" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <meta property="og:title" content="砍刀的房间" />
+    <meta
+      property="og:description"
+      content="来我房间坐坐？屋里的每样东西，都对应网站的一个板块。"
+    />
+    <meta
+      property="og:image"
+      content="https://darkkandaomaster.com/assets/img/social-preview.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="assets/css/site.css" />
+    <link rel="stylesheet" href="assets/css/room.css" />
+    <script type="importmap">
+      { "imports": { "three": "./assets/vendor/three/three.module.min.js" } }
+    </script>
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+  </head>
+  <body class="room-page">
+    <a class="skip-link" href="#room-panel">跳到物件列表</a>
+
+    <header class="topbar is-dark">
+      <div class="topbar-inner">
+        <p class="clock" aria-label="砍刀所在地的当前时间">
+          <span class="clock-dot" aria-hidden="true"></span><span>湖州</span>
+          <time class="clock-time" data-clock>--:--</time>
+        </p>
+        <nav class="nav" aria-label="主导航">
+          <a href="./#about"><span class="nav-num">01</span>关于</a>
+          <a href="./#work"><span class="nav-num">02</span>作品</a>
+          <a href="./#scripts"><span class="nav-num">03</span>脚本</a>
+          <a href="room.html" aria-current="page"><span class="nav-num">04</span>房间</a>
+          <a href="blog/"><span class="nav-num">05</span>博客</a>
+        </nav>
+        <a class="topbar-contact" href="./#contact"
+          >聊一聊<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg
+        ></a>
+      </div>
+    </header>
+
+    <main class="room" id="main">
+      <div class="stage" data-stage>
+        <canvas class="stage-canvas" data-canvas aria-hidden="true"></canvas>
+        <div class="hotspots" data-hotspots></div>
+
+        <figure class="stage-fallback" data-fallback>
+          <img
+            src="assets/img/room.jpg"
+            width="1600"
+            height="1000"
+            alt="砍刀的房间：书桌上有显示器、日记本、亚克力立牌和一台亮着灯的电脑，墙上挂着三张风景海报，左边是夜晚的窗户。"
+          />
+          <figcaption data-fallback-text>
+            这是房间的截图。你的浏览器暂时不能显示 3D，可以用右边的列表逛一逛。
+          </figcaption>
+        </figure>
+
+        <div class="loader" data-loader role="status">
+          <span class="loader-spark" aria-hidden="true">✳</span>
+          <span data-loader-text>正在搬家具…</span>
+        </div>
+
+        <p class="stage-hint" data-hint>拖动转视角 · 滚轮缩放 · 点物件看看</p>
+      </div>
+
+      <aside class="panel" id="room-panel" aria-labelledby="room-title">
+        <p class="panel-no">04 / ROOM</p>
+        <h1 id="room-title" class="panel-title">砍刀的房间<span class="dot">.</span></h1>
+        <p class="panel-lead">屋里的每样东西，都对应网站的一个板块。</p>
+
+        <section class="panel-card" data-detail aria-live="polite">
+          <p class="panel-card-no" data-detail-no>01</p>
+          <h2 data-detail-title>显示器</h2>
+          <p data-detail-desc>
+            屏幕上开着 QuickSay。常用的话和 AI 提示词都存在里面，按 Ctrl+Shift+V 就能呼出来。
+          </p>
+          <a class="btn btn-apricot" data-detail-link href="./#work">去看 QuickSay</a>
+        </section>
+
+        <ol class="panel-list" data-list>
+          <li>
+            <a href="./#work" data-item="monitor"><span>01</span>显示器<em>QuickSay</em></a>
+          </li>
+          <li>
+            <a href="./#work" data-item="diary"><span>02</span>日记本<em>LineHush</em></a>
+          </li>
+          <li>
+            <a href="./#work" data-item="shelf"><span>03</span>书架<em>Skills</em></a>
+          </li>
+          <li>
+            <a href="./#about" data-item="laptop"><span>04</span>不关机的电脑<em>最近</em></a>
+          </li>
+          <li>
+            <a href="./" data-item="standee"><span>05</span>亚克力立牌<em>首页</em></a>
+          </li>
+          <li>
+            <a href="./#scripts" data-item="keyboard"><span>06</span>键盘<em>脚本</em></a>
+          </li>
+          <li>
+            <a href="assets/img/poster-sunset.jpg" data-item="posters"
+              ><span>07</span>墙上的海报<em>—</em></a
+            >
+          </li>
+          <li>
+            <a href="./#contact" data-item="window"><span>08</span>窗户<em>联系</em></a>
+          </li>
+        </ol>
+      </aside>
+    </main>
+
+    <script src="assets/js/site.js" defer></script>
+    <script type="module" src="assets/js/room.js"></script>
+  </body>
+</html>

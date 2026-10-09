@@ -1,0 +1,337 @@
+/* 3D 房间页 */
+.room-page {
+  background: var(--night);
+  color: #ece8e2;
+  --room-line: #2f2c35;
+}
+.topbar.is-dark {
+  background: rgba(28, 26, 31, 0.82);
+  border-bottom-color: var(--room-line);
+}
+.topbar.is-dark .clock {
+  color: #a39ca8;
+}
+.topbar.is-dark .clock-time,
+.topbar.is-dark .topbar-contact {
+  color: #f4f1ec;
+}
+.topbar.is-dark .nav a {
+  color: #c9c3cd;
+}
+.topbar.is-dark .nav a:hover {
+  background: #2a2730;
+  color: #fff;
+}
+.topbar.is-dark .nav a[aria-current='page'] {
+  background: #2a2730;
+  color: #fff;
+  box-shadow: inset 0 0 0 1px #3d3944;
+}
+.topbar.is-dark .nav-num {
+  color: #aaa3b0;
+}
+.room-page a:hover {
+  color: #f6c8a6;
+}
+.room-page :focus-visible {
+  outline-color: #f0a072;
+}
+
+.room {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 380px;
+  height: calc(100svh - 72px);
+  min-height: 560px;
+}
+.stage {
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(120% 90% at 40% 30%, #2d2934 0%, #1c1a1f 70%);
+}
+.stage-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  outline: none;
+  touch-action: none;
+}
+.stage-canvas.is-pointing {
+  cursor: pointer;
+}
+.stage-fallback {
+  position: absolute;
+  inset: 0;
+  margin: 0;
+  display: none;
+}
+.stage-fallback img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.stage-fallback figcaption {
+  position: absolute;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: rgba(28, 26, 31, 0.85);
+  font-size: 14px;
+}
+.room.no-webgl .stage-fallback,
+html:not(.js) .stage-fallback {
+  display: block;
+}
+.room.no-webgl .loader,
+.room.no-webgl .stage-hint,
+html:not(.js) .loader,
+html:not(.js) .stage-hint {
+  display: none;
+}
+
+.loader {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  font-size: 15px;
+  color: #c9c3cd;
+  background: var(--night);
+  transition: opacity 0.8s var(--ease);
+}
+.loader.is-done {
+  opacity: 0;
+  pointer-events: none;
+}
+.loader-spark {
+  font-size: 40px;
+  color: var(--apricot);
+  animation: spin 2.4s linear infinite;
+}
+
+.stage-hint {
+  position: absolute;
+  left: 20px;
+  bottom: 20px;
+  margin: 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  background: rgba(28, 26, 31, 0.75);
+  border: 1px solid var(--room-line);
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #c9c3cd;
+  pointer-events: none;
+  transition: opacity 0.6s;
+}
+.stage-hint.is-hidden {
+  opacity: 0;
+}
+
+.hotspots {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.hotspot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  pointer-events: auto;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  transition: opacity 0.3s;
+}
+.hotspot span {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 600 12px/1 var(--mono);
+  color: var(--night);
+  background: #f4f1ec;
+  box-shadow: 0 0 0 5px rgba(240, 160, 114, 0.28);
+  transition:
+    background 0.2s,
+    transform 0.25s var(--ease);
+}
+.hotspot:hover span,
+.hotspot.is-active span {
+  background: #f0a072;
+  transform: scale(1.12);
+}
+.hotspot.is-active span {
+  animation: ping 1.8s infinite;
+}
+.hotspot.is-behind {
+  opacity: 0;
+  pointer-events: none;
+}
+.hotspot-label {
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  translate: -50% 2px;
+  white-space: nowrap;
+  font-size: 12px;
+  padding: 3px 8px;
+  border-radius: 6px;
+  background: rgba(28, 26, 31, 0.85);
+  color: #f4f1ec;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+}
+.hotspot:hover .hotspot-label,
+.hotspot:focus-visible .hotspot-label {
+  opacity: 1;
+}
+
+.panel {
+  border-left: 1px solid var(--room-line);
+  padding: 32px 28px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.panel-no {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  color: #f0a072;
+}
+.panel-title {
+  margin: -8px 0 0;
+  font-family: var(--serif);
+  font-weight: 900;
+  font-size: 40px;
+  line-height: 1.2;
+}
+.panel-lead {
+  margin: -10px 0 0;
+  font-size: 14px;
+  color: #a39ca8;
+}
+.panel-card {
+  padding: 20px;
+  border-radius: 16px;
+  background: #24222a;
+  border: 1px solid #34303b;
+}
+.panel-card-no {
+  margin: 0;
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #f0a072;
+}
+.panel-card h2 {
+  margin: 2px 0 8px;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 900;
+}
+.panel-card p:not(.panel-card-no) {
+  margin: 0 0 16px;
+  font-size: 15px;
+  line-height: 1.8;
+  color: #d9d4dc;
+}
+.btn-apricot {
+  min-height: 46px;
+  padding: 0 18px;
+  font-size: 15px;
+  background: #f0a072;
+  border-color: #f0a072;
+  color: var(--night);
+}
+.btn-apricot:hover {
+  color: var(--night) !important;
+  background: #f6c8a6;
+  border-color: #f6c8a6;
+  transform: translateY(-2px);
+}
+.btn-apricot[hidden] {
+  display: none;
+}
+.panel-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 2px;
+}
+.panel-list a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-height: 44px;
+  padding: 6px 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #d9d4dc;
+  border: 1px solid transparent;
+}
+.panel-list a:hover {
+  background: #24222a;
+  color: #fff;
+}
+.panel-list a.is-active {
+  background: #24222a;
+  border-color: #3a3642;
+  color: #fff;
+}
+.panel-list span {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: #f0a072;
+}
+.panel-list em {
+  margin-left: auto;
+  font-style: normal;
+  font-size: 12px;
+  color: #8f8996;
+}
+
+@keyframes ping {
+  0% {
+    box-shadow: 0 0 0 0 rgba(240, 160, 114, 0.6);
+  }
+  100% {
+    box-shadow: 0 0 0 14px rgba(240, 160, 114, 0);
+  }
+}
+
+@media (max-width: 920px) {
+  .room {
+    grid-template-columns: minmax(0, 1fr);
+    grid-template-rows: minmax(380px, 62svh) auto;
+    height: auto;
+  }
+  .panel {
+    border-left: 0;
+    border-top: 1px solid var(--room-line);
+    padding: 24px var(--gutter) 40px;
+    overflow: visible;
+  }
+  .stage-hint {
+    left: 12px;
+    bottom: 12px;
+    font-size: 11px;
+  }
+}

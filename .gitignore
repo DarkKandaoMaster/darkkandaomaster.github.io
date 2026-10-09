@@ -8,3 +8,10 @@ playwright-report/
 .DS_Store
 output/
 AGENTS.md
+# 本地素材与私人文件（含真实姓名/电话），不进仓库
+_待删除/
+个人简历.md
+头像.png
+立绘.png
+笔记.txt
+.claude/

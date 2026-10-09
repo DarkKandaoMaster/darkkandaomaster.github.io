@@ -1,124 +1,54 @@
 import { test, expect } from '@playwright/test';
-import AxeBuilder from '@axe-core/playwright';
 
-test('project filters show matching work and restore all projects', async ({ page }) => {
+test('copy buttons put the email and group number on the clipboard', async ({ page, context }) => {
+  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
   await page.goto('/');
-  for (const [name, count] of [
-    ['AI 应用', 2],
-    ['数据探索', 2],
-    ['效率工具', 1],
-    ['全部', 4],
+  for (const [name, text] of [
+    ['复制邮箱', '2837619550@qq.com'],
+    ['复制群号', '1026364290'],
   ]) {
-    const filter = page.getByRole('button', { name, exact: name !== '全部' });
-    await filter.click();
-    await expect(filter).toHaveAttribute('aria-pressed', 'true');
-    await expect(page.locator('.project-card:visible')).toHaveCount(count);
-    await expect(page.locator('#filter-status')).toContainText(`${count} 个作品`);
+    const button = page.locator(`[data-label="${name}"]`);
+    await button.click();
+    await expect(button).toHaveText('已复制');
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(text);
   }
 });
 
-test('theme can be toggled, persists after reload and meets WCAG AA', async ({ page }) => {
+test('clicking a QuickSay phrase types it into the message box', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto('/');
-  await page.getByRole('button', { name: '切换到深色主题' }).click();
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-  await page.reload();
-  await expect(page.getByRole('button', { name: '切换到浅色主题' })).toBeVisible();
-  const results = await new AxeBuilder({ page })
-    .withTags(['wcag2a', 'wcag2aa', 'wcag21aa'])
-    .analyze();
-  expect(
-    results.violations.map(({ id, nodes }) => ({
-      id,
-      nodes: nodes.map((node) => node.failureSummary),
-    })),
-  ).toEqual([]);
-  await page.getByRole('button', { name: '切换到浅色主题' }).click();
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'light');
+  await page.getByRole('button', { name: '请用简体中文回答。' }).click();
+  await expect(page.locator('[data-chat]')).toHaveText('请用简体中文回答。');
 });
 
-test('copy email writes the correct address and confirms success', async ({ page, context }) => {
-  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+test('the clock shows the time in Huzhou', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: '复制邮箱' }).click();
-  await expect(page.locator('#copy-feedback')).toContainText('已复制');
-  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('2837619550@qq.com');
+  await expect(page.locator('[data-clock]')).toHaveText(/^\d{2}:\d{2}$/);
 });
 
-test('QQ group number is visible and can be copied', async ({ page, context }) => {
-  await context.grantPermissions(['clipboard-read', 'clipboard-write']);
-  await page.goto('/');
-  await expect(page.getByText('1026364290', { exact: true })).toBeVisible();
-  await page.getByRole('button', { name: '复制群号' }).click();
-  await expect(page.locator('#qq-copy-feedback')).toContainText('群号已复制');
-  expect(await page.evaluate(() => navigator.clipboard.readText())).toBe('1026364290');
-});
-
-test('QQ group copying failure keeps the number available for manual copying', async ({ page }) => {
-  await page.addInitScript(() => {
-    Object.defineProperty(navigator, 'clipboard', {
-      value: { writeText: () => Promise.reject(new Error('Denied')) },
-    });
-  });
-  await page.goto('/');
-  await expect(page.getByText('1026364290', { exact: true })).toBeVisible();
-  await page.getByRole('button', { name: '复制群号' }).click();
-  await expect(page.locator('#qq-copy-feedback')).toContainText('请手动复制：1026364290');
-  await expect(page.locator('#qq-copy-feedback')).not.toContainText('已复制');
-});
-
-test('clipboard denial provides a manual fallback without a false success message', async ({
-  page,
-}) => {
-  await page.addInitScript(() => {
-    Object.defineProperty(navigator, 'clipboard', {
-      value: { writeText: () => Promise.reject(new Error('Denied')) },
-    });
-  });
-  await page.goto('/');
-  await page.getByRole('button', { name: '复制邮箱' }).click();
-  await expect(page.locator('#copy-feedback')).toContainText('请手动复制');
-  await expect(page.locator('#copy-feedback')).not.toContainText('已复制');
-});
-
-test('blocked browser storage does not break theme or filters', async ({ page }) => {
+test('the room explains each object and links to its section', async ({ page }) => {
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  await page.addInitScript(() => {
-    Object.defineProperty(window, 'localStorage', {
-      get() {
-        throw new Error('Storage disabled');
-      },
-    });
-  });
-  await page.goto('/');
-  await page.getByRole('button', { name: '切换到深色主题' }).click();
-  await expect(page.locator('html')).toHaveAttribute('data-theme', 'dark');
-  await page.getByRole('button', { name: '效率工具', exact: true }).click();
-  await expect(page.locator('.project-card:visible')).toHaveCount(1);
+  await page.goto('/room.html');
+  await page.locator('[data-item="diary"]').click();
+  await expect(page.locator('[data-detail-title]')).toHaveText('日记本');
+  await expect(page.locator('[data-detail-link]')).toHaveAttribute('href', './#work');
+  await page.locator('[data-item="posters"]').click();
+  await expect(page.locator('[data-detail-link]')).toBeHidden();
+  await page.locator('[data-item="window"]').click();
+  await page.locator('[data-detail-link]').click();
+  await expect(page).toHaveURL(/#contact$/);
   expect(errors).toEqual([]);
 });
 
-test('mobile navigation and native project details work with a keyboard', async ({ page }) => {
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.emulateMedia({ reducedMotion: 'reduce' });
+test('the top navigation reaches the room and the blog', async ({ page }) => {
   await page.goto('/');
-  await page.keyboard.press('Tab');
-  await expect(page.getByRole('link', { name: '跳到主要内容' })).toBeFocused();
-  const link = page.getByRole('navigation').getByRole('link', { name: '02 作品' });
-  await link.click();
-  await expect(page).toHaveURL(/#work$/);
-  await expect(link).toHaveAttribute('aria-current', 'location');
-  const headingTop = await page
-    .locator('#work-title')
-    .evaluate((element) => element.getBoundingClientRect().top);
-  const headerBottom = await page
-    .locator('.site-header')
-    .evaluate((element) => element.getBoundingClientRect().bottom);
-  expect(headingTop).toBeGreaterThanOrEqual(headerBottom);
-  const summary = page.locator('details summary').first();
-  await summary.focus();
-  await page.keyboard.press('Enter');
-  await expect(page.locator('details').first()).toHaveAttribute('open', '');
-  await page.keyboard.press('Enter');
-  await expect(page.locator('details').first()).not.toHaveAttribute('open', '');
+  const nav = page.getByRole('navigation', { name: '主导航' });
+  await nav.getByRole('link', { name: /房间/ }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('砍刀的房间.');
+  await page
+    .getByRole('navigation', { name: '主导航' })
+    .getByRole('link', { name: /博客/ })
+    .click();
+  await expect(page.getByRole('heading', { level: 1 })).toHaveText('博客.');
 });

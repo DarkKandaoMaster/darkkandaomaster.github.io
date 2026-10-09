@@ -1,25 +1,25 @@
 import { createServer } from 'node:http';
 import { readFile } from 'node:fs/promises';
 import { extname, resolve, sep } from 'node:path';
+import { dirs, pages, rootFiles } from './site-files.mjs';
 
 const root = resolve(process.env.SITE_DIR || '.');
 const port = Number(process.env.PORT || 4173);
 const types = {
-  '.html': 'text/html',
-  '.css': 'text/css',
-  '.js': 'text/javascript',
+  '.html': 'text/html; charset=utf-8',
+  '.css': 'text/css; charset=utf-8',
+  '.js': 'text/javascript; charset=utf-8',
   '.svg': 'image/svg+xml',
   '.png': 'image/png',
   '.webp': 'image/webp',
   '.jpg': 'image/jpeg',
   '.ico': 'image/x-icon',
-  '.xml': 'application/xml',
-  '.txt': 'text/plain',
-  '.md': 'text/plain',
+  '.xml': 'application/xml; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8',
   '.pdf': 'application/pdf',
-  '.ttf': 'font/ttf',
+  '.woff2': 'font/woff2',
 };
-const publicFiles = new Set(['index.html', 'resume.html', '404.html', 'robots.txt', 'sitemap.xml']);
+const publicFiles = new Set([...pages, ...rootFiles]);
 
 createServer(async (request, response) => {
   if (!['GET', 'HEAD'].includes(request.method)) {
@@ -28,15 +28,17 @@ createServer(async (request, response) => {
   }
   try {
     const pathname = decodeURIComponent(new URL(request.url, 'http://localhost').pathname);
-    const relative = pathname === '/' ? 'index.html' : pathname.slice(1);
+    let relative = pathname.slice(1);
+    if (relative === '' || relative.endsWith('/')) relative += 'index.html';
     const file = resolve(root, relative);
-    const isAsset =
-      relative.startsWith('assets/') && !relative.split('/').some((part) => part.startsWith('.'));
-    if (!file.startsWith(root + sep) || (!publicFiles.has(relative) && !isAsset))
+    const inDir =
+      dirs.some((dir) => relative.startsWith(`${dir}/`)) &&
+      !relative.split('/').some((part) => part.startsWith('.'));
+    if (!file.startsWith(root + sep) || (!publicFiles.has(relative) && !inDir))
       throw new Error('Not public');
     const body = await readFile(file);
     response.writeHead(200, {
-      'Content-Type': `${types[extname(file)] || 'application/octet-stream'}; charset=utf-8`,
+      'Content-Type': types[extname(file)] || 'application/octet-stream',
       'Cache-Control': 'no-cache',
       'X-Content-Type-Options': 'nosniff',
     });

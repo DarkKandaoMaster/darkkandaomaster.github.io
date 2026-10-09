@@ -1,15 +1,31 @@
 # 内容与素材来源
 
-核对日期：2026-09-12。
+核对日期：2026-10-10。
 
-- 用户提供的本地个人简历：真实姓名、学校、2028 届、求职方向、技术能力、两项项目经历与三项获奖信息。奖项按用户简历陈述呈现，未进行独立证书认证。
-- [GitHub 个人主页](https://github.com/DarkKandaoMaster)：网名“强壮的砍刀”、GitHub 用户名、公开头像、开源项目。
-- 用户补充的 QQ 交流群号：1026364290，用于首页联系区域展示和复制。
-- [OmicsInferenceDeck](https://github.com/DarkKandaoMaster/OmicsInferenceDeck)：项目链接。7 种方法、15 种指标、15 种图表取自用户简历。
-- [QuickSay](https://github.com/DarkKandaoMaster/QuickSay)：README 描述了 C++ / Qt、Windows 10 / 11、短语分组、搜索、快捷输入和图片 / 文件粘贴，MIT 开源。未使用会过时的 stars 数或下载量。
-- [CastCount](https://github.com/DarkKandaoMaster/castcount)：README 与本地简历中的动漫人脸检测流水线对应；网站使用当前仓库名，保留 anime-face-clipper 的原项目名说明。未把 README 中小样本实验结果当作普适性能宣传。
-- [MathorCup 2026](https://github.com/DarkKandaoMaster/MathorCup_2026_C_Project)：C 题项目；职责分工与奖项来自用户简历。
-- [参考站点](https://chasen-intro.vercel.app/)：仅参考编辑式排版方向，本站结构、实现、文字与图形均重新编写。
-- [Noto Serif SC](https://github.com/google/fonts/tree/main/ofl/notoserifsc)：SIL OFL 字体，使用 Google Fonts 生成的标题字符子集，在本地托管；对应许可证随站点保留。
+## 公开范围
 
-首页不使用虚构项目、假工作经历、虚构评价或进度百分比。项目预览图为原创示意。公开联系方式为邮箱、GitHub 和 QQ 交流群；手机号与详细每周到岗时间不包含在站点文件中。简历中的临时内网穿透链接未用于主站导航。
+- 公开：网名「砍刀 / 强壮的砍刀 / DarkKandaoMaster」、湖州师范大学、本科在读（2028 届）、浙江湖州、QQ 邮箱、X、GitHub、QQ 个人交流群。
+- 不公开：真实姓名、手机号、实习公司名称、客户与具体项目名。实习只写「某 AI 数据公司」。
+- 「在找工作/实习」只写在简历里，网站其他页面不提。
+- 获奖经历只放在简历里。
+
+## 内容
+
+- 项目信息来自本地仓库（`D:\Release`）和对应的 GitHub 仓库 README。QuickSay 的 Star 数（70）、累计下载（850+，各版本 Release 下载数之和）和最新版本（v2.0.1）取自 2026-10-10 的 GitHub 数据，需要时手动更新。
+- 「最开始只是为了方便发颜文字」「可能是 Agent 时代最好用的 prompt 输入工具」来自用户自己的笔记。
+- 简历正文来自用户提供的本地简历，已去掉真实姓名和电话；anime-face-clipper 已更名为 castcount。
+
+## 图片
+
+- 头像、立绘：用户提供，用户确认可公开展示，不署名画师。立绘只用在 3D 房间的亚克力立牌上。
+- 海报与 LineHush 截图里的风景图：用户自己的游戏截图，已裁掉游戏 UID。
+- QuickSay 截图：QuickSay 仓库 README 里的窗口截图。
+- LineHush 截图：用 LineHush 的前端加示例内容截取。
+- 房间截图、分享图：由本站页面生成。
+- 所有图片都已去除 EXIF、XMP 等元数据。
+
+## 字体与库
+
+- [Noto Serif SC](https://github.com/google/fonts/tree/main/ofl/notoserifsc)、[Instrument Serif](https://github.com/google/fonts/tree/main/ofl/instrumentserif)、[JetBrains Mono](https://github.com/google/fonts/tree/main/ofl/jetbrainsmono)：SIL OFL，裁剪子集后本地托管。
+- [Three.js](https://threejs.org/) r170：MIT，本地托管在 `assets/vendor/three/`。
+- 3D 房间的思路参考了 [陈启粤的书房](https://github.com/qiyuechen0929/personal-website)；场景、代码与文字均为重新编写。

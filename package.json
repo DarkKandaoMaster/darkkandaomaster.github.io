@@ -7,11 +7,12 @@
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "build": "node scripts/build.mjs",
-    "check": "node --check scripts/serve.mjs && node --check scripts/build.mjs && node --check scripts/export-assets.mjs && node --check assets/site.js && node --check assets/theme.js",
+    "check": "node --check scripts/serve.mjs && node --check scripts/build.mjs && node --check scripts/export-assets.mjs && node --check scripts/vendor.mjs && node --check assets/js/site.js && node --check assets/js/room.js",
     "test": "playwright test",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "export:assets": "node scripts/export-assets.mjs"
+    "export:assets": "node scripts/export-assets.mjs",
+    "vendor": "node scripts/vendor.mjs"
   },
   "engines": {
     "node": ">=22"
@@ -19,6 +20,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.13.0",
     "@playwright/test": "^1.63.0",
-    "prettier": "^3.9.6"
+    "prettier": "^3.9.6",
+    "three": "^0.170.0"
   }
 }

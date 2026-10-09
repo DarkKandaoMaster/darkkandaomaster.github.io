@@ -3,28 +3,36 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#f7f8f2" />
-    <title>砍刀 · DarkKandaoMaster — AI 应用开发与数据探索</title>
+    <title>砍刀 · 做点小工具，让日子顺手一点</title>
     <meta
       name="description"
-      content="你好，我是砍刀（DarkKandaoMaster），湖州师范大学 2028 届本科生。用 Python 构建 AI 应用、探索数据，也做一些让日常更轻松的开源工具。"
+      content="砍刀（DarkKandaoMaster）的个人网站：快捷短语软件 QuickSay、日记编辑器 LineHush、Agent Skills 和一堆顺手的小脚本。"
     />
+    <meta name="theme-color" content="#F5F1EA" />
     <link rel="canonical" href="https://darkkandaomaster.com/" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
-    <meta property="og:locale" content="zh_CN" />
-    <meta property="og:title" content="砍刀 · 把想法，写成现实。" />
+    <meta property="og:site_name" content="砍刀" />
+    <meta property="og:title" content="砍刀 · 做点小工具，让日子顺手一点" />
     <meta
       property="og:description"
-      content="砍刀 / DarkKandaoMaster · AI 应用开发、数据探索与开源工具。保持好奇，认真创造。"
+      content="QuickSay、LineHush、Agent Skills 和一堆顺手的小脚本。"
     />
     <meta property="og:url" content="https://darkkandaomaster.com/" />
-    <meta property="og:image" content="https://darkkandaomaster.com/assets/social-preview.png" />
+    <meta
+      property="og:image"
+      content="https://darkkandaomaster.com/assets/img/social-preview.png"
+    />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-    <link rel="preload" href="assets/heading-font.ttf" as="font" type="font/ttf" crossorigin />
-    <link rel="stylesheet" href="assets/style.css" />
-    <script src="assets/theme.js"></script>
-    <script src="assets/site.js" defer></script>
+    <meta name="twitter:site" content="@KandaoMaster" />
+    <link
+      rel="preload"
+      href="assets/fonts/kandao-serif.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link rel="stylesheet" href="assets/css/site.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -32,534 +40,547 @@
         "name": "砍刀",
         "alternateName": ["DarkKandaoMaster", "强壮的砍刀"],
         "url": "https://darkkandaomaster.com/",
-        "image": "https://darkkandaomaster.com/assets/avatar.jpg",
-        "sameAs": ["https://github.com/DarkKandaoMaster"],
-        "affiliation": { "@type": "CollegeOrUniversity", "name": "湖州师范大学" },
-        "knowsAbout": ["Python", "AI 应用开发", "数据挖掘", "FastAPI"]
+        "image": "https://darkkandaomaster.com/assets/img/avatar-512.jpg",
+        "sameAs": ["https://github.com/DarkKandaoMaster", "https://x.com/KandaoMaster"]
       }
+    </script>
+    <script>
+      document.documentElement.classList.add('js');
     </script>
   </head>
   <body>
     <a class="skip-link" href="#main">跳到主要内容</a>
-    <svg class="icon-sprite" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14m-6-6 6 6-6 6" /></symbol>
-      <symbol id="i-up-right" viewBox="0 0 24 24"><path d="M6 18 18 6M6 6h12v12" /></symbol>
-      <symbol id="i-github" viewBox="0 0 24 24">
-        <path
-          d="M9 19c-4 1-4-2-6-2m12 5v-4a3.5 3.5 0 0 0-1-3c3.3-.4 6-1.6 6-6a4.7 4.7 0 0 0-1.3-3.3A4.3 4.3 0 0 0 18.6 2S17.3 1.6 15 3a13.4 13.4 0 0 0-6 0C6.7 1.6 5.4 2 5.4 2a4.3 4.3 0 0 0-.1 3.7A4.7 4.7 0 0 0 4 9c0 4.4 2.7 5.6 6 6a3.5 3.5 0 0 0-1 3v4"
-        />
-      </symbol>
-      <symbol id="i-mail" viewBox="0 0 24 24">
-        <rect x="3" y="5" width="18" height="14" rx="2" />
-        <path d="m3 6 9 7 9-7" />
-      </symbol>
-      <symbol id="i-sun" viewBox="0 0 24 24">
-        <circle cx="12" cy="12" r="4" />
-        <path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" />
-      </symbol>
-      <symbol id="i-moon" viewBox="0 0 24 24">
-        <path d="M20.5 13A8.5 8.5 0 0 1 11 3.5 8.5 8.5 0 1 0 20.5 13Z" />
-      </symbol>
-      <symbol id="i-pin" viewBox="0 0 24 24">
-        <path d="M19 10c0 5-7 11-7 11S5 15 5 10a7 7 0 1 1 14 0Z" />
-        <circle cx="12" cy="10" r="2" />
-      </symbol>
-      <symbol id="i-file" viewBox="0 0 24 24">
-        <path d="M14 2H5v20h14V7l-5-5Zm0 0v6h5M8 12h8m-8 4h8" />
-      </symbol>
-    </svg>
-    <header class="site-header">
-      <div class="header-inner container">
-        <a class="brand" href="#home" aria-label="砍刀，返回首页"
-          ><span class="brand-mark">k<span>.</span></span
-          ><span
-            >砍刀<span class="brand-slash"> / </span><span class="brand-en">KANDAO</span></span
-          ></a
-        >
-        <nav class="main-nav" aria-label="主要导航">
-          <a href="#about"><span>01</span> 关于</a><a href="#work"><span>02</span> 作品</a
-          ><a href="#skills"><span>03</span> 技能</a><a href="#journey"><span>04</span> 足迹</a>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <p class="clock" aria-label="砍刀所在地的当前时间">
+          <span class="clock-dot" aria-hidden="true"></span><span>湖州</span>
+          <time class="clock-time" data-clock>--:--</time>
+        </p>
+        <nav class="nav" aria-label="主导航">
+          <a href="#about"><span class="nav-num">01</span>关于</a>
+          <a href="#work"><span class="nav-num">02</span>作品</a>
+          <a href="#scripts"><span class="nav-num">03</span>脚本</a>
+          <a href="room.html"><span class="nav-num">04</span>房间</a>
+          <a href="blog/"><span class="nav-num">05</span>博客</a>
         </nav>
-        <div class="header-actions">
-          <button
-            class="icon-button theme-toggle js-only"
-            type="button"
-            aria-label="切换到深色主题"
-          >
-            <svg class="icon moon-icon"><use href="#i-moon" /></svg
-            ><svg class="icon sun-icon"><use href="#i-sun" /></svg></button
-          ><a class="header-contact" href="#contact"
-            >聊一聊 <svg class="icon"><use href="#i-up-right" /></svg
-          ></a>
-        </div>
+        <a class="topbar-contact" href="#contact"
+          >聊一聊<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg
+        ></a>
       </div>
     </header>
+
     <main id="main">
-      <section class="hero container" id="home" aria-labelledby="hero-title">
-        <div class="hero-topline">
-          <span class="eyebrow"
-            ><span class="tiny-cross">+</span> A PERSONAL SPACE FOR IDEAS &amp; CODE</span
-          ><span class="edition">EST. 2026 <span>↙</span></span>
+      <!-- 首屏 -->
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-meta-row" aria-hidden="true">
+          <span>+&nbsp;&nbsp;A SMALL DESK FOR SMALL TOOLS</span>
+          <span>EST. 2024 ↙</span>
         </div>
+
         <div class="hero-grid">
           <div class="hero-copy">
-            <div class="availability">
-              <span class="status-dot"></span> 正在寻找 AI 应用 / 数据挖掘实习
-            </div>
-            <p class="hero-greeting">
-              你好，我是砍刀 <span class="wave" aria-hidden="true">✳</span>
-            </p>
-            <h1 id="hero-title">
-              把想法，<br />写成<span class="underlined-word"
-                >现实<span class="title-period">。</span></span
-              >
+            <p class="hello">你好，我是砍刀 <span class="spark" aria-hidden="true">✳</span></p>
+            <h1 id="hero-title" class="hero-title">
+              <span class="line">做点小工具，</span
+              ><span class="line">让日子<span class="mark">顺手</span>一点。</span>
             </h1>
-            <p class="hero-subtitle">From curiosity to creation.</p>
-            <p class="hero-description">
-              我是砍刀，一名喜欢动手做东西的开发者。<br class="desktop-break" />用 Python 探索 AI
-              与数据，把遇到的问题，<br class="desktop-break" />一点点变成能用的工具。
+            <p class="hero-en">Small tools, made with care.</p>
+            <p class="hero-lead">
+              我喜欢把每天遇到的小麻烦，写成能用的工具。快捷短语软件 QuickSay、日记编辑器
+              LineHush，还有一堆 AutoHotkey 脚本和 Agent Skills，都是这么来的。
             </p>
             <div class="hero-actions">
-              <a class="button button-primary" href="#work"
-                >看看我的作品 <svg class="icon"><use href="#i-arrow" /></svg></a
-              ><a class="button button-outline" href="resume.html"
-                ><svg class="icon"><use href="#i-file" /></svg> 查看简历</a
-              >
-            </div>
-            <div class="hero-location">
-              <svg class="icon"><use href="#i-pin" /></svg><span>中国 · 湖州</span
-              ><span class="dot-divider">/</span><span>湖州师范大学 · 2028 届</span>
-            </div>
-          </div>
-          <div class="workbench" aria-label="砍刀的创作工作台：连接代码、AI 与数据">
-            <div class="workbench-label">
-              <span class="status-dot"></span> KANDAO'S WORKBENCH <span>↗</span>
-            </div>
-            <div class="orbit orbit-outer"></div>
-            <div class="orbit orbit-inner"></div>
-            <svg class="connector-lines" viewBox="0 0 480 460" aria-hidden="true">
-              <path d="M100 136 239 211 386 114M77 284l162-73 131 102M239 211v170" />
-              <circle cx="100" cy="136" r="4" />
-              <circle cx="386" cy="114" r="4" />
-              <circle cx="77" cy="284" r="4" />
-              <circle cx="370" cy="313" r="4" />
-            </svg>
-            <div class="floating-label label-python">
-              <span class="node-icon">&gt;_</span
-              ><span>Python<span class="node-subtitle">MY GO-TO LANGUAGE</span></span>
-            </div>
-            <div class="floating-label label-ai">
-              <span class="node-icon">✳</span><span>AI + Ideas</span>
-            </div>
-            <div class="avatar-wrap">
-              <img
-                src="assets/avatar.jpg"
-                alt="砍刀的 GitHub 头像"
-                width="400"
-                height="400"
-                fetchpriority="high"
-              /><span class="avatar-caption">hello, world!</span>
-            </div>
-            <div class="floating-label label-data">
-              <span class="node-icon">▥</span
-              ><span>Data<span class="node-subtitle">FIND THE SIGNAL</span></span>
-            </div>
-            <span class="workbench-spark" aria-hidden="true">✳</span>
-            <div class="handwritten">
-              a little curiosity,<br />a lot of possibilities.<svg
-                viewBox="0 0 80 45"
-                aria-hidden="true"
-              >
-                <path d="M5 5q20 37 65 22m-8-7 9 7-4 10" />
-              </svg>
-            </div>
-            <div class="terminal-note">
-              <div><span class="terminal-dots">● ● ●</span><span>hello.py</span></div>
-              <code
-                ><span>while</span> curious:<br />&nbsp;&nbsp;&nbsp;&nbsp;learn()
-                <span class="code-comment"># 保持好奇</span><br />&nbsp;&nbsp;&nbsp;&nbsp;build()
-                <span class="code-comment"># 认真创造</span
-                ><span class="terminal-cursor">▌</span></code
-              >
-            </div>
-            <span class="workbench-corner corner-tl" aria-hidden="true">+</span
-            ><span class="workbench-corner corner-br" aria-hidden="true">+</span>
-          </div>
-        </div>
-        <div class="hero-bottom">
-          <span>保持好奇，认真创造。</span
-          ><span class="hero-bottom-middle"
-            >DEVELOPER <span>·</span> EXPLORER <span>·</span> BUILDER</span
-          ><a href="#about">向下探索 <span aria-hidden="true">↓</span></a>
-        </div>
-      </section>
-      <section class="section about-section container" id="about" aria-labelledby="about-title">
-        <div class="section-aside">
-          <span class="section-index">01 / ABOUT</span>
-          <h2 id="about-title">关于我<span class="accent">.</span></h2>
-          <span class="aside-note">MORE THAN A README</span>
-        </div>
-        <div class="about-content">
-          <p class="about-lead">从「这个能不能做？」<br />到「这个真的能用。」</p>
-          <p>
-            你好！我是<strong>强壮的砍刀</strong>（DarkKandaoMaster），目前在湖州师范大学读本科，预计
-            2028 年毕业。我对 AI 应用开发、数据挖掘，以及让日常更轻松的小工具感兴趣。
-          </p>
-          <p>
-            我喜欢完整地解决一个问题：从整理数据、搭建后端，到做出可以交互的界面。写代码时也会使用
-            AI
-            工具辅助开发，再认真检查逻辑、补上边界和测试。对我来说，把东西做出来，是理解它的好方式。
-          </p>
-          <div class="about-tags">
-            <span>⌘ 独立开发</span><span>↗ 在实践中学习</span><span>♡ 开源与分享</span
-            ><span class="kaomoji">ヾ(≧▽≦*)o</span>
-          </div>
-        </div>
-      </section>
-      <section class="section work-section container" id="work" aria-labelledby="work-title">
-        <div class="section-heading">
-          <div>
-            <span class="section-index">02 / SELECTED WORK</span>
-            <h2 id="work-title">一些从零到一的尝试<span class="accent">.</span></h2>
-          </div>
-          <a
-            class="text-link"
-            href="https://github.com/DarkKandaoMaster?tab=repositories"
-            target="_blank"
-            rel="noopener noreferrer"
-            >所有仓库 <svg class="icon"><use href="#i-up-right" /></svg
-          ></a>
-        </div>
-        <div class="work-toolbar">
-          <p>把好奇心，放进真实的项目里。</p>
-          <div class="project-filters js-only" role="group" aria-label="筛选作品">
-            <button type="button" data-filter="all" aria-pressed="true">全部 <span>04</span></button
-            ><button type="button" data-filter="ai" aria-pressed="false">AI 应用</button
-            ><button type="button" data-filter="data" aria-pressed="false">数据探索</button
-            ><button type="button" data-filter="tools" aria-pressed="false">效率工具</button>
-          </div>
-        </div>
-        <p class="sr-only" id="filter-status" role="status" aria-live="polite"></p>
-        <div class="project-grid">
-          <article class="project-card" data-category="ai data">
-            <a
-              class="project-visual visual-omics"
-              href="https://github.com/DarkKandaoMaster/OmicsInferenceDeck"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="在 GitHub 查看 OmicsInferenceDeck"
-              ><span class="visual-tag">AI × BIOINFORMATICS</span
-              ><img
-                src="assets/omics-preview.svg"
-                alt="多组学分析工作流示意：数据、聚类与评估图表"
-                width="620"
-                height="320"
-                loading="lazy" /><span class="visual-caption">WORKFLOW CONCEPT / 工作流示意</span
-              ><span class="visual-arrow"
-                ><svg class="icon"><use href="#i-up-right" /></svg></span
-            ></a>
-            <div class="project-info">
-              <div class="project-meta"><span>01 — PYTHON 全栈</span><span>独立开发</span></div>
-              <h3>OmicsInferenceDeck</h3>
-              <p>把分散的多组学分析步骤，整理成一个可运行、可比较、可导出的研究工作台。</p>
-              <div class="tech-tags">
-                <span>Python</span><span>FastAPI</span><span>Vue / Nuxt</span><span>R</span>
-              </div>
-              <details>
-                <summary>项目细节 <span aria-hidden="true">+</span></summary>
-                <div class="project-detail">
-                  <p>
-                    按数据接入、算法运行、指标评估与绘图拆分服务；用 Python 编排 R 计算，以 Parquet
-                    传递中间数据。前端支持上传、配置、运行反馈和结果导出。
-                  </p>
-                  <p>
-                    包含 7 种聚类方法、15 种评估指标与 15 种图表，支持 PNG、SVG、PDF 导出。获批 2026
-                    国家级大创重点项目。
-                  </p>
-                  <a
-                    class="text-link"
-                    href="https://github.com/DarkKandaoMaster/OmicsInferenceDeck"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >阅读项目源码 ↗</a
-                  >
-                </div>
-              </details>
-            </div>
-          </article>
-          <article class="project-card" data-category="tools">
-            <a
-              class="project-visual visual-quicksay"
-              href="https://github.com/DarkKandaoMaster/QuickSay"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="在 GitHub 查看 QuickSay"
-              ><span class="visual-tag">SMALL TOOL, EVERYDAY JOY</span
-              ><img
-                src="assets/quicksay-preview.svg"
-                alt="QuickSay 快捷短语工具功能示意：分组、搜索、快捷输入"
-                width="620"
-                height="320"
-                loading="lazy" /><span class="visual-caption">INTERFACE CONCEPT / 功能示意</span
-              ><span class="visual-arrow"
-                ><svg class="icon"><use href="#i-up-right" /></svg></span
-            ></a>
-            <div class="project-info">
-              <div class="project-meta"><span>02 — 桌面效率工具</span><span>开源维护</span></div>
-              <h3>QuickSay</h3>
-              <p>常用短语、命令和 AI 提示词，随叫随到。让重复输入这件小事，少占一点时间。</p>
-              <div class="tech-tags">
-                <span>C++</span><span>Qt</span><span>Windows</span><span>MIT</span>
-              </div>
-              <details>
-                <summary>项目细节 <span aria-hidden="true">+</span></summary>
-                <div class="project-detail">
-                  <p>
-                    支持短语分组、搜索、拖动排序、自定义快捷键和连续输入，也可通过标签执行按键、暂停、粘贴图片或文件。
-                  </p>
-                  <p>
-                    面向 Windows 10 /
-                    11，免费、开源，持续维护。用一个轻量桌面工具，解决反复打开文本文件复制粘贴的麻烦。
-                  </p>
-                  <a
-                    class="text-link"
-                    href="https://github.com/DarkKandaoMaster/QuickSay/releases"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >查看发行版本 ↗</a
-                  >
-                </div>
-              </details>
-            </div>
-          </article>
-          <article class="project-card compact-project" data-category="ai">
-            <div class="project-info">
-              <div class="project-meta">
-                <span>03 — 计算机视觉</span><span class="project-mini-icon">[ ▷ ]</span>
-              </div>
-              <h3>
-                <a
-                  href="https://github.com/DarkKandaoMaster/castcount"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >CastCount <svg class="icon"><use href="#i-up-right" /></svg
-                ></a>
-              </h3>
-              <p>
-                从一段视频中找到角色密集出场的片段。让检测、跟踪、角色聚类与视频截取连成一条流水线。
-              </p>
-              <div class="tech-tags">
-                <span>YOLOv8</span><span>ONNX Runtime</span><span>OpenCV</span><span>FFmpeg</span>
-              </div>
-              <details>
-                <summary>项目细节 <span aria-hidden="true">+</span></summary>
-                <div class="project-detail">
-                  <p>
-                    始于 anime-face-clipper。通过人脸检测与质量过滤、IoU
-                    跟踪、角色特征聚类和滑动窗口筛选，输出视频片段、轨迹与代表人脸图。
-                  </p>
-                  <p>
-                    统一检测数据结构，使各阶段可以单独检查，并为跟踪、聚类与选段等核心逻辑补充测试。当前仓库名为
-                    castcount。
-                  </p>
-                  <a
-                    class="text-link"
-                    href="https://github.com/DarkKandaoMaster/castcount"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >阅读项目源码 ↗</a
-                  >
-                </div>
-              </details>
-            </div>
-          </article>
-          <article class="project-card compact-project" data-category="data">
-            <div class="project-info">
-              <div class="project-meta">
-                <span>04 — 数据分析与建模</span><span class="project-mini-icon">∑(x)</span>
-              </div>
-              <h3>
-                <a
-                  href="https://github.com/DarkKandaoMaster/MathorCup_2026_C_Project"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >MathorCup 2026 <svg class="icon"><use href="#i-up-right" /></svg
-                ></a>
-              </h3>
-              <p>
-                从原始数据走到模型与求解。记录一次数学建模实践，也留下可以继续复现和讨论的代码。
-              </p>
-              <div class="tech-tags">
-                <span>Python</span><span>数据预处理</span><span>数学建模</span
-                ><span class="award-tag">全国一等奖</span>
-              </div>
-              <details>
-                <summary>项目细节 <span aria-hidden="true">+</span></summary>
-                <div class="project-detail">
-                  <p>
-                    第十六届 MathorCup 数学应用挑战赛 C
-                    题项目，获全国一等奖。我负责数据预处理、建模、编程求解、题解撰写与说明文档编写，论文由团队其他成员完成。
-                  </p>
-                  <a
-                    class="text-link"
-                    href="https://github.com/DarkKandaoMaster/MathorCup_2026_C_Project"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    >查看代码与题解 ↗</a
-                  >
-                </div>
-              </details>
-            </div>
-          </article>
-        </div>
-      </section>
-      <section class="section skills-section container" id="skills" aria-labelledby="skills-title">
-        <div class="section-aside">
-          <span class="section-index">03 / TOOLKIT</span>
-          <h2 id="skills-title">让工具<br />各司其职<span class="accent">.</span></h2>
-          <p class="aside-description">围绕问题选工具，<br />在项目里长本事。</p>
-        </div>
-        <div class="skill-list">
-          <div class="skill-row">
-            <span class="skill-icon" aria-hidden="true">&gt;_</span>
-            <div>
-              <h3>后端与应用开发</h3>
-              <p>从接口设计、数据校验，到模块化服务。</p>
-              <div class="tech-tags">
-                <span>Python</span><span>FastAPI</span><span>Pydantic</span><span>SQL</span>
-              </div>
-            </div>
-            <span class="skill-number">01</span>
-          </div>
-          <div class="skill-row">
-            <span class="skill-icon" aria-hidden="true">⌘</span>
-            <div>
-              <h3>AI 与计算机视觉</h3>
-              <p>检测、筛选、跟踪，让模型走进实际流程。</p>
-              <div class="tech-tags">
-                <span>YOLOv8</span><span>OpenCV</span><span>ONNX Runtime</span><span>FFmpeg</span>
-              </div>
-            </div>
-            <span class="skill-number">02</span>
-          </div>
-          <div class="skill-row">
-            <span class="skill-icon" aria-hidden="true">▥</span>
-            <div>
-              <h3>数据分析与建模</h3>
-              <p>清洗数据、处理特征，寻找藏在数据里的线索。</p>
-              <div class="tech-tags">
-                <span>Pandas</span><span>NumPy / SciPy</span><span>scikit-learn</span><span>R</span>
-              </div>
-            </div>
-            <span class="skill-number">03</span>
-          </div>
-          <div class="skill-row">
-            <span class="skill-icon" aria-hidden="true">⏣</span>
-            <div>
-              <h3>界面与开发工作流</h3>
-              <p>把功能变成交互，用 AI 辅助、用审查和测试把关。</p>
-              <div class="tech-tags">
-                <span>Vue / Nuxt</span><span>TypeScript</span><span>Tailwind CSS</span
-                ><span>Git</span><span>AI 辅助开发</span>
-              </div>
-            </div>
-            <span class="skill-number">04</span>
-          </div>
-        </div>
-      </section>
-      <section
-        class="section journey-section container"
-        id="journey"
-        aria-labelledby="journey-title"
-      >
-        <div class="section-heading">
-          <div>
-            <span class="section-index">04 / MILESTONES</span>
-            <h2 id="journey-title">沿途的小小里程碑<span class="accent">.</span></h2>
-          </div>
-          <span class="section-note">STILL LEARNING. STILL BUILDING.</span>
-        </div>
-        <ol class="milestones">
-          <li>
-            <span class="milestone-year">2026</span>
-            <div>
-              <span class="milestone-category">INNOVATION</span>
-              <h3>国家级大学生创新创业训练计划</h3>
-              <p>重点项目立项 · 基于 OmicsInferenceDeck</p>
-            </div>
-            <span class="milestone-badge">国家级 · 重点项目</span>
-          </li>
-          <li>
-            <span class="milestone-year">2026</span>
-            <div>
-              <span class="milestone-category">MATHEMATICAL MODELING</span>
-              <h3>第十六届 MathorCup 数学应用挑战赛</h3>
-              <p>数据预处理、建模与编程求解 · 团队项目</p>
-            </div>
-            <span class="milestone-badge">全国一等奖</span>
-          </li>
-          <li>
-            <span class="milestone-year">2026</span>
-            <div>
-              <span class="milestone-category">NETWORK TECHNOLOGY</span>
-              <h3>网络技术挑战赛</h3>
-              <p>以 OmicsInferenceDeck 项目参赛</p>
-            </div>
-            <span class="milestone-badge">省级二等奖</span>
-          </li>
-        </ol>
-      </section>
-      <section class="contact-section" id="contact" aria-labelledby="contact-title">
-        <div class="container contact-inner">
-          <div>
-            <span class="section-index">05 / SAY HELLO</span>
-            <h2 id="contact-title">下一个想法，<br />一起实现<span>？</span></h2>
-            <p>
-              正在寻找 AI 应用开发 / 数据挖掘实习机会。<br />也欢迎聊聊开源、项目，或一个有趣的新点子。
-            </p>
-            <a class="contact-email" href="mailto:2837619550@qq.com"
-              >2837619550@qq.com <svg class="icon"><use href="#i-up-right" /></svg
-            ></a>
-            <div class="contact-actions">
-              <button type="button" class="button button-light js-only" id="copy-email">
-                <svg class="icon"><use href="#i-mail" /></svg><span>复制邮箱</span></button
-              ><a
-                class="button button-contact"
-                href="https://github.com/DarkKandaoMaster"
-                target="_blank"
-                rel="noopener noreferrer"
-                ><svg class="icon"><use href="#i-github" /></svg> GitHub</a
-              ><a class="button button-contact" href="resume.html"
-                >查看简历 <svg class="icon"><use href="#i-up-right" /></svg
+              <a class="btn btn-ink" href="#work"
+                >看看作品<svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M5 12h14M13 6l6 6-6 6" /></svg
               ></a>
+              <a class="btn btn-line" href="https://x.com/KandaoMaster"
+                ><svg viewBox="0 0 24 24" aria-hidden="true" class="fill">
+                  <path
+                    d="M17.8 3h3.1l-6.8 7.8L22 21h-6.2l-4.9-6.4L5.3 21H2.2l7.3-8.3L2 3h6.4l4.4 5.8L17.8 3zm-1.1 16.2h1.7L7.4 4.7H5.6l11.1 14.5z"
+                  /></svg
+                >在 X 上找我</a
+              >
             </div>
-            <p id="copy-feedback" class="copy-feedback" role="status" aria-live="polite"></p>
-            <div class="contact-group">
-              <div class="contact-group-row">
+            <p class="hero-where">
+              <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 21s-7-6.1-7-11.5A7 7 0 0 1 19 9.5C19 14.9 12 21 12 21z" />
+                <circle cx="12" cy="9.5" r="2.5" />
+              </svg>
+              中国 · 浙江湖州<span class="sep">/</span>湖州师范大学 · 2028 届
+            </p>
+          </div>
+
+          <!-- 桌面：头像 + 正在用的东西 -->
+          <div class="desk" data-desk>
+            <span class="desk-corner tl" aria-hidden="true">+</span>
+            <span class="desk-corner br" aria-hidden="true">+</span>
+            <p class="desk-label" aria-hidden="true"><span></span>KANDAO'S DESK</p>
+
+            <svg
+              class="desk-lines"
+              viewBox="0 0 100 100"
+              preserveAspectRatio="none"
+              aria-hidden="true"
+            >
+              <path d="M50 51 L22 22" class="l1" />
+              <path d="M50 51 L80 24" />
+              <path d="M50 51 L22 80" />
+              <path d="M50 51 L78 80" />
+            </svg>
+
+            <figure class="avatar" data-depth="0.4">
+              <span class="avatar-ring" aria-hidden="true"></span>
+              <picture>
+                <source srcset="assets/img/avatar-512.webp" type="image/webp" />
+                <img
+                  src="assets/img/avatar-512.jpg"
+                  width="512"
+                  height="512"
+                  alt="砍刀的头像：戴着女仆头饰、眨着一只眼比手势的金发角色"
+                  fetchpriority="high"
+                />
+              </picture>
+              <figcaption class="avatar-tag">hello, world!</figcaption>
+            </figure>
+
+            <!-- QuickSay 迷你窗口 -->
+            <div class="float qs" data-depth="1.1">
+              <div class="win-bar">
+                <span class="win-title">QuickSay</span>
+                <span class="kbd-row" aria-label="快捷键 Ctrl+Shift+V"
+                  ><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>V</kbd></span
+                >
+              </div>
+              <ul class="qs-list" aria-label="QuickSay 里存着的常用语，点一下发到右下角的输入框">
+                <li><button type="button" data-phrase="ヾ(≧▽≦*)o">ヾ(≧▽≦*)o</button></li>
+                <li>
+                  <button type="button" data-phrase="请用简体中文回答。">请用简体中文回答。</button>
+                </li>
+                <li>
+                  <button type="button" data-phrase="先说说你的计划。">先说说你的计划。</button>
+                </li>
+              </ul>
+            </div>
+
+            <!-- 终端 -->
+            <div class="float term" data-depth="0.8" aria-hidden="true">
+              <p class="term-dots"><span></span><span></span><span></span><em>~/LineHush</em></p>
+              <p><b>$</b> claude</p>
+              <p class="term-user">&gt; 未保存的修改先暂存，防崩溃</p>
+              <p class="term-ai">● 好的，先看看 SaveQueue…</p>
+              <p><span class="caret">▌</span></p>
+            </div>
+
+            <!-- 便利贴 -->
+            <div class="float note" data-depth="1.4">
+              <p>按住右 Alt 说话，<br />松开就打好字了。</p>
+              <span>— 一个 AHK 脚本</span>
+            </div>
+
+            <!-- 输入框：接收 QuickSay 发来的话 -->
+            <div class="float chat" data-depth="0.9">
+              <span class="chat-label">发给 AI 的消息</span>
+              <p class="chat-box" aria-live="polite">
+                <span class="chat-text" data-chat>点左上角的常用语试试</span
+                ><span class="caret">▌</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero-foot">
+          <span>保持好奇，认真创造。</span>
+          <span class="hero-foot-mid" aria-hidden="true">TOOLS · SCRIPTS · SKILLS</span>
+          <a href="#about">往下看看 ↓</a>
+        </div>
+      </section>
+
+      <!-- 关于 -->
+      <section id="about" class="section about" aria-labelledby="about-title">
+        <header class="section-head" data-reveal>
+          <p class="section-no">01 / ABOUT</p>
+          <h2 id="about-title">关于我<span class="dot">.</span></h2>
+          <p class="section-en">More than a README.</p>
+        </header>
+
+        <div class="about-grid">
+          <div class="about-text" data-reveal>
+            <p class="about-big">从「这个能不能做？」<br />到「这个真的能用。」</p>
+            <p>
+              我是砍刀，网名「强壮的砍刀」，在湖州读大三。我喜欢把每天遇到的小麻烦写成工具：发颜文字太麻烦，就做了
+              QuickSay；找不到顺手的日记编辑器，就做了 LineHush；AI
+              给的链接老是打不开，就写了一个约束它联网搜索的 Skill。
+            </p>
+            <p>
+              现在几乎每天都和 Claude、Codex
+              一起写代码，晚上睡觉也让电脑开着让它接着跑。做出来的东西能帮到别人，是我最开心的事。
+            </p>
+            <ul class="stack" aria-label="常用的技术">
+              <li>Python</li>
+              <li>C++ / Qt</li>
+              <li>TypeScript</li>
+              <li>React</li>
+              <li>Tauri</li>
+              <li>FastAPI</li>
+              <li>AutoHotkey</li>
+              <li>Claude Code</li>
+              <li>Codex</li>
+            </ul>
+          </div>
+
+          <ol class="now" aria-label="最近在忙的事" data-reveal>
+            <li>
+              <span class="now-when">2026 暑假 — 至今</span>
+              <strong>在某 AI 数据公司实习</strong>
+              <p>
+                做多模态数据的标注和评测，比如给视频写描述。顺手把重复的活写成 Skill
+                和脚本，让自己和同事都省点时间。
+              </p>
+            </li>
+            <li>
+              <span class="now-when">学校</span>
+              <strong>论文、实验和比赛</strong>
+              <p>在做多组学癌症亚型识别方向的论文和实验。手上还有一个比赛作品，比赛结束后开源。</p>
+            </li>
+            <li>
+              <span class="now-when">社区</span>
+              <strong>维护几个开源项目</strong>
+              <p>QuickSay 的反馈每条都会回。最近主要在写 LineHush 和几个 Agent Skills。</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- 作品 -->
+      <section id="work" class="section work" aria-labelledby="work-title">
+        <header class="section-head" data-reveal>
+          <p class="section-no">02 / WORK</p>
+          <h2 id="work-title">能帮到大家的东西<span class="dot">.</span></h2>
+          <p class="section-en">Made for myself, shared with everyone.</p>
+        </header>
+
+        <article class="feature feature-wide" aria-labelledby="qs-title" data-reveal>
+          <div class="feature-copy">
+            <p class="feature-kicker"><span>01</span>桌面效率工具 · 持续维护</p>
+            <h3 id="qs-title">QuickSay</h3>
+            <p class="feature-sub">一款快捷短语软件</p>
+            <p>
+              把常用的话、命令和 AI 提示词存进去，按 <kbd>Ctrl</kbd>+<kbd>Shift</kbd>+<kbd>V</kbd>
+              呼出，点一下就输入。支持分组、搜索、拖动排序和自定义快捷键。
+            </p>
+          </div>
+          <div class="feature-side">
+            <blockquote>
+              最开始做它，只是为了方便发颜文字。后来发现，它可能是 Agent 时代最好用的 prompt
+              输入工具。
+            </blockquote>
+            <dl class="stats">
+              <div>
+                <dt>GitHub Star</dt>
+                <dd>70</dd>
+              </div>
+              <div>
+                <dt>累计下载</dt>
+                <dd>850+</dd>
+              </div>
+              <div>
+                <dt>最新版本</dt>
+                <dd>v2.0.1</dd>
+              </div>
+            </dl>
+            <ul class="tags" aria-label="技术与平台">
+              <li>C++</li>
+              <li>Qt</li>
+              <li>Windows 10 / 11</li>
+              <li>MIT</li>
+            </ul>
+            <p class="links">
+              <a href="https://quicksay.cn">官网 quicksay.cn ↗</a>
+              <a href="https://github.com/DarkKandaoMaster/QuickSay/releases/latest"
+                >下载最新版 ↗</a
+              >
+              <a href="https://github.com/DarkKandaoMaster/QuickSay">GitHub ↗</a>
+            </p>
+          </div>
+          <figure class="feature-shot">
+            <picture>
+              <source srcset="assets/img/quicksay.webp" type="image/webp" />
+              <img
+                src="assets/img/quicksay.jpg"
+                width="1800"
+                height="603"
+                loading="lazy"
+                alt="QuickSay 的四个窗口：主窗口的常用语列表、添加、修改和设置"
+              />
+            </picture>
+            <figcaption>主窗口、添加、修改和设置窗口</figcaption>
+          </figure>
+        </article>
+
+        <article class="feature feature-alt" aria-labelledby="lh-title" data-reveal>
+          <div class="feature-copy">
+            <p class="feature-kicker"><span>02</span>日记编辑器 · 开发中</p>
+            <h3 id="lh-title">LineHush</h3>
+            <p class="feature-sub">只有纯文本和图片的日记编辑器</p>
+            <p>
+              想要苹果备忘录那样的体验：敲几个回车就是几个空行，插进来的图片自动排成小图。Obsidian
+              和 VS Code 都不太对味，就自己写了一个。
+            </p>
+            <ul class="checks">
+              <li>本地优先，一篇日记就是一个 .hush 文件</li>
+              <li>停止输入后自动暂存，程序崩溃也能恢复</li>
+              <li>粘贴或拖入图片，自动组成图片组</li>
+            </ul>
+            <ul class="tags" aria-label="技术">
+              <li>Tauri 2</li>
+              <li>React</li>
+              <li>TypeScript</li>
+              <li>Rust</li>
+            </ul>
+            <p class="links">
+              <a href="https://github.com/DarkKandaoMaster/LineHush">GitHub ↗</a>
+            </p>
+          </div>
+          <figure class="feature-shot">
+            <picture>
+              <source srcset="assets/img/linehush.webp" type="image/webp" />
+              <img
+                src="assets/img/linehush.jpg"
+                width="1600"
+                height="1024"
+                loading="lazy"
+                alt="LineHush 编辑窗口：几行文字中间夹着一组三张风景截图的小图"
+              />
+            </picture>
+            <figcaption>一篇日记：文字和一组截图</figcaption>
+          </figure>
+        </article>
+
+        <div class="subhead" data-reveal>
+          <h3>Agent Skills 与补丁</h3>
+          <p>给 AI 定的工作方法，和给工具打的小补丁。</p>
+        </div>
+        <ul class="cards" data-reveal>
+          <li>
+            <a class="card" href="https://github.com/DarkKandaoMaster/verified-web-research">
+              <span class="card-top"
+                ><span class="pill">Skill · Python</span><span class="star">★ 3</span></span
+              >
+              <strong>verified-web-research</strong>
+              <span class="card-desc"
+                >约束 AI
+                联网搜索：检查链接能不能打开、网页内容是否真的支持它的说法、多篇转载有没有被当成多个来源。</span
+              >
+            </a>
+          </li>
+          <li>
+            <a class="card" href="https://github.com/DarkKandaoMaster/stepwise-lessons">
+              <span class="card-top"><span class="pill">Skill · Python</span></span>
+              <strong>stepwise-lessons</strong>
+              <span class="card-desc"
+                >把一个知识点、一篇论文或一段讲座拆成给初学者的课程，一课一个文件，讲完一课就停下来等你反馈。</span
+              >
+            </a>
+          </li>
+          <li>
+            <a class="card" href="https://github.com/DarkKandaoMaster/claude-session-migrate">
+              <span class="card-top"
+                ><span class="pill">Skill · PowerShell</span><span class="star">★ 2</span></span
+              >
+              <strong>claude-session-migrate</strong>
+              <span class="card-desc">换号之后，把 Claude 桌面应用里的旧会话找回来。</span>
+            </a>
+          </li>
+          <li>
+            <a
+              class="card"
+              href="https://github.com/DarkKandaoMaster/vscode-claude-code-slash-collapse-patch"
+            >
+              <span class="card-top"
+                ><span class="pill">补丁 · Python</span><span class="star">★ 1</span></span
+              >
+              <strong>slash-collapse-patch</strong>
+              <span class="card-desc"
+                >给 VS Code 的 Claude Code
+                扩展打个补丁，让超长的斜杠命令消息变成滚动框，不再撑满整页。</span
+              >
+            </a>
+          </li>
+        </ul>
+
+        <div class="split" data-reveal>
+          <div>
+            <div class="subhead">
+              <h3>给别人项目的贡献</h3>
+              <p>用着不顺手，就改一改，再提回去。</p>
+            </div>
+            <ul class="rows">
+              <li>
+                <a href="https://github.com/DarkKandaoMaster/IPLocation_for_TrafficMonitor">
+                  <strong>IPLocation_for_TrafficMonitor</strong>
+                  <span
+                    >TrafficMonitor 的 IP 归属地插件。改善了公网 IP 刷新、失败提示和任务栏显示，已提
+                    PR。</span
+                  >
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DarkKandaoMaster/video-downloader">
+                  <strong>video-downloader</strong>
+                  <span>一个视频下载工具。重做了它的前端，已提 PR。</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div class="subhead">
+              <h3>也做过</h3>
+              <p>学校、论文和比赛里写的东西。</p>
+            </div>
+            <ul class="rows">
+              <li>
+                <a href="https://github.com/DarkKandaoMaster/castcount">
+                  <strong>castcount</strong>
+                  <span>从动漫视频里找出角色密集出场的片段，并截取出来。</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DarkKandaoMaster/OmicsInferenceDeck">
+                  <strong>OmicsInferenceDeck</strong>
+                  <span>多组学癌症亚型识别算法的评估平台。</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DarkKandaoMaster/Subtype-DCC_Engineering">
+                  <strong>Subtype-DCC_Engineering</strong>
+                  <span>把一篇论文的模型工程化，做成能直接用的工具。</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://github.com/DarkKandaoMaster/MathorCup_2026_C_Project">
+                  <strong>MathorCup 2026 C 题</strong>
+                  <span>数学建模比赛的完整代码和说明。</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- 脚本 -->
+      <section id="scripts" class="section scripts" aria-labelledby="scripts-title">
+        <header class="section-head" data-reveal>
+          <p class="section-no">03 / SCRIPTS</p>
+          <h2 id="scripts-title">随手写的小脚本<span class="dot">.</span></h2>
+          <p class="section-en">Tiny fixes for tiny annoyances.</p>
+        </header>
+
+        <div class="tree" data-reveal>
+          <p class="tree-head">
+            <span class="tree-dots" aria-hidden="true"
+              ><span></span><span></span><span></span
+            ></span>
+            <a href="https://github.com/DarkKandaoMaster/DarkKandaoMaster-Scripts"
+              >DarkKandaoMaster-Scripts ↗</a
+            >
+          </p>
+          <div class="tree-cols">
+            <div>
+              <p class="tree-dir">AutoHotkey-Scripts/</p>
+              <dl>
                 <div>
-                  <span class="contact-group-label">QQ 交流群</span>
-                  <strong class="contact-group-number">1026364290</strong>
+                  <dt>右Alt按住说话（豆包输入法）.ahk</dt>
+                  <dd>按住右 Alt 语音输入，松开就打好字了</dd>
                 </div>
-                <button type="button" class="button button-contact js-only" id="copy-qq-group">
+                <div>
+                  <dt>Alt+Tab只在最近两个窗口切换.ahk</dt>
+                  <dd>不用再在一长串窗口里找</dd>
+                </div>
+                <div>
+                  <dt>空格方向键映射为鼠标滚轮.ahk</dt>
+                  <dd>看长文档时，手不用离开键盘</dd>
+                </div>
+                <div>
+                  <dt>mpvnet 长按右方向键三倍速播放.ahk</dt>
+                  <dd>和手机上视频 App 的长按倍速一样</dd>
+                </div>
+                <div>
+                  <dt>Mac键位映射为Windows键位.ahk</dt>
+                  <dd>用 Mac 键盘也顺手</dd>
+                </div>
+              </dl>
+            </div>
+            <div>
+              <p class="tree-dir">Other-Scripts/</p>
+              <dl>
+                <div>
+                  <dt>strip_metadata.py</dt>
+                  <dd>去掉 EXIF、XMP、IPTC、C2PA 等附加信息，像素一个不动</dd>
+                </div>
+                <div>
+                  <dt>convert_transcript.py</dt>
+                  <dd>把 Claude Code 对话转成逐字 Markdown</dd>
+                </div>
+                <div>
+                  <dt>feishu_html2md.py</dt>
+                  <dd>把飞书文档转成 Markdown</dd>
+                </div>
+                <div>
+                  <dt>find_duplicates.py</dt>
+                  <dd>找出重复的文件</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 联系 -->
+      <section id="contact" class="section contact" aria-labelledby="contact-title">
+        <div class="contact-inner" data-reveal>
+          <p class="section-no">04 / CONTACT</p>
+          <h2 id="contact-title">来聊聊吧<span class="dot">.</span></h2>
+          <p class="contact-lead">项目反馈、合作，或者随便聊聊都可以。X 上回复最快。</p>
+          <p class="contact-mail">
+            <a href="mailto:2837619550@qq.com">2837619550@qq.com</a>
+            <button class="copy" type="button" data-copy="2837619550@qq.com" data-label="复制邮箱">
+              复制邮箱
+            </button>
+          </p>
+          <ul class="contact-list">
+            <li>
+              <a href="https://x.com/KandaoMaster"
+                ><span>X</span><strong>@KandaoMaster</strong><em>日常主要在这里</em></a
+              >
+            </li>
+            <li>
+              <a href="https://github.com/DarkKandaoMaster"
+                ><span>GitHub</span><strong>DarkKandaoMaster</strong><em>项目和代码</em></a
+              >
+            </li>
+            <li>
+              <div class="contact-qq">
+                <span>QQ 交流群</span><strong>1026364290</strong>
+                <button class="copy" type="button" data-copy="1026364290" data-label="复制群号">
                   复制群号
                 </button>
               </div>
-              <p id="qq-copy-feedback" class="copy-feedback" role="status" aria-live="polite"></p>
-            </div>
-          </div>
-          <div class="contact-art" aria-hidden="true">
-            <span>LET'S MAKE<br />SOMETHING<br /><i>meaningful.</i></span>
-            <div>✳</div>
-            <span class="contact-art-note">GOOD THINGS START WITH A HELLO.</span>
-          </div>
+            </li>
+          </ul>
         </div>
       </section>
     </main>
-    <footer class="site-footer container">
-      <a class="footer-brand" href="#home"
-        >砍刀<span class="accent">.</span> <span>保持好奇，认真创造。</span></a
-      ><span>© <span data-year>2026</span> DarkKandaoMaster</span
-      ><a href="#home" class="back-top">回到顶部 ↑</a>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        <span>© 2026 砍刀 · darkkandaomaster.com</span>
+        <span class="footer-links"><a href="resume.html">公开简历</a></span>
+        <span>没有统计，没有 Cookie。</span>
+      </div>
     </footer>
+
+    <script src="assets/js/site.js" defer></script>
   </body>
 </html>

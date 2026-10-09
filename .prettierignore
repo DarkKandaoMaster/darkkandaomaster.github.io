@@ -3,8 +3,12 @@ dist/
 test-results/
 playwright-report/
 AGENTS.md
+assets/vendor/
+assets/fonts/
 assets/*.svg
-assets/*.md
-assets/*.txt
 package-lock.json
 output/
+_待删除/
+.claude/
+个人简历.md
+笔记.txt
