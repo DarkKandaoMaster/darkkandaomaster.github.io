@@ -7,8 +7,6 @@ assets/vendor/
 assets/fonts/
 assets/*.svg
 package-lock.json
-output/
 _待删除/
+private/
 .claude/
-个人简历.md
-笔记.txt
