@@ -60,9 +60,8 @@
         <nav class="nav" aria-label="主导航">
           <a href="#about"><span class="nav-num">01</span>关于</a>
           <a href="#work"><span class="nav-num">02</span>作品</a>
-          <a href="#scripts"><span class="nav-num">03</span>脚本</a>
-          <a href="room.html"><span class="nav-num">04</span>房间</a>
-          <a href="blog/"><span class="nav-num">05</span>博客</a>
+          <a href="room.html"><span class="nav-num">03</span>房间</a>
+          <a href="blog/"><span class="nav-num">04</span>博客</a>
         </nav>
         <a class="topbar-contact" href="#contact"
           >聊一聊<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9" /></svg
@@ -410,6 +409,69 @@
           </li>
         </ul>
 
+        <div id="scripts" class="subhead" data-reveal>
+          <h3>随手写的小脚本</h3>
+          <p>每天遇到的小麻烦，顺手写个脚本解决。</p>
+        </div>
+        <div class="tree" data-reveal>
+          <p class="tree-head">
+            <span class="tree-dots" aria-hidden="true"
+              ><span></span><span></span><span></span
+            ></span>
+            <a href="https://github.com/DarkKandaoMaster/DarkKandaoMaster-Scripts"
+              >DarkKandaoMaster-Scripts ↗</a
+            >
+          </p>
+          <div class="tree-cols">
+            <div>
+              <p class="tree-dir">AutoHotkey-Scripts/</p>
+              <dl>
+                <div>
+                  <dt>右Alt按住说话（豆包输入法）.ahk</dt>
+                  <dd>按住右 Alt 语音输入，松开就打好字了</dd>
+                </div>
+                <div>
+                  <dt>Alt+Tab只在最近两个窗口切换.ahk</dt>
+                  <dd>不用再在一长串窗口里找</dd>
+                </div>
+                <div>
+                  <dt>空格方向键映射为鼠标滚轮.ahk</dt>
+                  <dd>看长文档时，手不用离开键盘</dd>
+                </div>
+                <div>
+                  <dt>mpvnet 长按右方向键三倍速播放.ahk</dt>
+                  <dd>和手机上视频 App 的长按倍速一样</dd>
+                </div>
+                <div>
+                  <dt>Mac键位映射为Windows键位.ahk</dt>
+                  <dd>用 Mac 键盘也顺手</dd>
+                </div>
+              </dl>
+            </div>
+            <div>
+              <p class="tree-dir">Other-Scripts/</p>
+              <dl>
+                <div>
+                  <dt>strip_metadata.py</dt>
+                  <dd>去掉 EXIF、XMP、IPTC、C2PA 等附加信息，像素一个不动</dd>
+                </div>
+                <div>
+                  <dt>convert_transcript.py</dt>
+                  <dd>把 Claude Code 对话转成逐字 Markdown</dd>
+                </div>
+                <div>
+                  <dt>feishu_html2md.py</dt>
+                  <dd>把飞书文档转成 Markdown</dd>
+                </div>
+                <div>
+                  <dt>find_duplicates.py</dt>
+                  <dd>找出重复的文件</dd>
+                </div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
         <div class="split" data-reveal>
           <div>
             <div class="subhead">
@@ -469,78 +531,10 @@
         </div>
       </section>
 
-      <!-- 脚本 -->
-      <section id="scripts" class="section scripts" aria-labelledby="scripts-title">
-        <header class="section-head" data-reveal>
-          <p class="section-no">03 / SCRIPTS</p>
-          <h2 id="scripts-title">随手写的小脚本<span class="dot">.</span></h2>
-          <p class="section-en">Tiny fixes for tiny annoyances.</p>
-        </header>
-
-        <div class="tree" data-reveal>
-          <p class="tree-head">
-            <span class="tree-dots" aria-hidden="true"
-              ><span></span><span></span><span></span
-            ></span>
-            <a href="https://github.com/DarkKandaoMaster/DarkKandaoMaster-Scripts"
-              >DarkKandaoMaster-Scripts ↗</a
-            >
-          </p>
-          <div class="tree-cols">
-            <div>
-              <p class="tree-dir">AutoHotkey-Scripts/</p>
-              <dl>
-                <div>
-                  <dt>右Alt按住说话（豆包输入法）.ahk</dt>
-                  <dd>按住右 Alt 语音输入，松开就打好字了</dd>
-                </div>
-                <div>
-                  <dt>Alt+Tab只在最近两个窗口切换.ahk</dt>
-                  <dd>不用再在一长串窗口里找</dd>
-                </div>
-                <div>
-                  <dt>空格方向键映射为鼠标滚轮.ahk</dt>
-                  <dd>看长文档时，手不用离开键盘</dd>
-                </div>
-                <div>
-                  <dt>mpvnet 长按右方向键三倍速播放.ahk</dt>
-                  <dd>和手机上视频 App 的长按倍速一样</dd>
-                </div>
-                <div>
-                  <dt>Mac键位映射为Windows键位.ahk</dt>
-                  <dd>用 Mac 键盘也顺手</dd>
-                </div>
-              </dl>
-            </div>
-            <div>
-              <p class="tree-dir">Other-Scripts/</p>
-              <dl>
-                <div>
-                  <dt>strip_metadata.py</dt>
-                  <dd>去掉 EXIF、XMP、IPTC、C2PA 等附加信息，像素一个不动</dd>
-                </div>
-                <div>
-                  <dt>convert_transcript.py</dt>
-                  <dd>把 Claude Code 对话转成逐字 Markdown</dd>
-                </div>
-                <div>
-                  <dt>feishu_html2md.py</dt>
-                  <dd>把飞书文档转成 Markdown</dd>
-                </div>
-                <div>
-                  <dt>find_duplicates.py</dt>
-                  <dd>找出重复的文件</dd>
-                </div>
-              </dl>
-            </div>
-          </div>
-        </div>
-      </section>
-
       <!-- 联系 -->
       <section id="contact" class="section contact" aria-labelledby="contact-title">
         <div class="contact-inner" data-reveal>
-          <p class="section-no">04 / CONTACT</p>
+          <p class="section-no">03 / CONTACT</p>
           <h2 id="contact-title">来聊聊吧<span class="dot">.</span></h2>
           <p class="contact-lead">项目反馈、合作，或者随便聊聊都可以。</p>
           <p class="contact-mail">
