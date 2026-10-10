@@ -458,7 +458,7 @@ function build() {
       map: standeeTex,
       emissiveMap: standeeTex,
       emissive: '#ffffff',
-      emissiveIntensity: 0.25,
+      emissiveIntensity: 0.35,
       transparent: true,
       alphaTest: 0.4,
       roughness: 0.4,
@@ -732,13 +732,19 @@ function build() {
   const raycaster = new THREE.Raycaster();
   const pointer = new THREE.Vector2();
   let hovered = null;
+  // 取消高亮时还原材质原本的发光色（立牌自带白色自发光，不能直接设成黑色）
+  const setGlow = (material, on) => {
+    material.userData.baseEmissive ??= material.emissive.clone();
+    if (on) material.emissive.set('#5a2a10');
+    else material.emissive.copy(material.userData.baseEmissive);
+  };
   const highlight = (id, on) => {
     if (!id || !groups[id]) return;
     groups[id].traverse((o) => {
       if (!o.isMesh || !o.material.emissive) return;
-      o.material.emissive.set(on ? '#5a2a10' : '#000000');
+      setGlow(o.material, on);
     });
-    if (id === 'laptop') tower.material.emissive.set(on ? '#5a2a10' : '#000000');
+    if (id === 'laptop') setGlow(tower.material, on);
   };
   const pick = (event) => {
     const rect = canvas.getBoundingClientRect();
