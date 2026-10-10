@@ -458,7 +458,7 @@ function build() {
       map: standeeTex,
       emissiveMap: standeeTex,
       emissive: '#ffffff',
-      emissiveIntensity: 0.15,
+      emissiveIntensity: 0.25,
       transparent: true,
       alphaTest: 0.4,
       roughness: 0.4,
