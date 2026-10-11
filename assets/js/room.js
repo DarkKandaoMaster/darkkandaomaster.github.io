@@ -458,13 +458,15 @@ function build() {
       map: standeeTex,
       emissiveMap: standeeTex,
       emissive: '#ffffff',
-      emissiveIntensity: 0.45,
+      emissiveIntensity: 0.22,
       transparent: true,
       alphaTest: 0.4,
       roughness: 0.4,
       side: THREE.DoubleSide,
     }),
   );
+  // 自发光让立绘在暗处也看得清；悬停时提亮并偏暖，和其它物件的高亮一致
+  figure.material.userData.hover = { color: '#ffd2a8', intensity: 0.6 };
   figure.position.set(0, 1.1, 0);
   figure.castShadow = true;
   const acrylic = new THREE.Mesh(
@@ -734,11 +736,23 @@ function build() {
   let hovered = null;
   const highlight = (id, on) => {
     if (!id || !groups[id]) return;
+    const apply = (m) => {
+      if (!m.emissive) return;
+      // 记住材质原本的自发光，取消高亮时还原，而不是一律清成黑色
+      m.userData.base ??= { color: m.emissive.clone(), intensity: m.emissiveIntensity };
+      const { base, hover } = m.userData;
+      if (on) {
+        m.emissive.set(hover ? hover.color : '#5a2a10');
+        m.emissiveIntensity = hover ? hover.intensity : base.intensity;
+      } else {
+        m.emissive.copy(base.color);
+        m.emissiveIntensity = base.intensity;
+      }
+    };
     groups[id].traverse((o) => {
-      if (!o.isMesh || !o.material.emissive) return;
-      o.material.emissive.set(on ? '#5a2a10' : '#000000');
+      if (o.isMesh) apply(o.material);
     });
-    if (id === 'laptop') tower.material.emissive.set(on ? '#5a2a10' : '#000000');
+    if (id === 'laptop') apply(tower.material);
   };
   const pick = (event) => {
     const rect = canvas.getBoundingClientRect();
